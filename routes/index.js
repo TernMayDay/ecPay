@@ -54,7 +54,7 @@ router.get('/checkout', function(req, res, next) {
     TradeDesc: '測試交易描述',
     ItemName: '測試商品等',
     ReturnURL: `${HOST}/return`,
-    // ClientBackURL: 'https://www.google.com',
+    ClientBackURL: `${HOST}/clientBack.html`,
   }
 
   let create = new ecpay_payment(options)
@@ -64,12 +64,11 @@ router.get('/checkout', function(req, res, next) {
   // 將 html 帶進 checkout.ejs 頁面
   res.render('checkout', { title: 'Express' , html });
 })
-
+.post('/return', function(req,res,next) {
+  console.log('req.body => ',req.body);
+  res.send('1/OK')
+})
 
 module.exports = router;
 
 
-// .post('/return', function(req,res,next) {
-//   console.log('req.body => ',req.body);
-//   send('1/OK')
-// })
